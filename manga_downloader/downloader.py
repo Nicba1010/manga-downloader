@@ -47,11 +47,7 @@ class ImageDownloader:
         for attempt in range(self.max_retries):
             try:
                 # Add referer header for some sites
-                headers = self.session.headers.copy()
-                if urlparse(url).netloc:
-                    headers['Referer'] = f"https://{urlparse(url).netloc}/"
-
-                response = self.session.get(url, headers=headers, timeout=timeout, stream=True)
+                response = requests.get(url, timeout=timeout, stream=True)
                 response.raise_for_status()
 
                 # Read image data
@@ -62,7 +58,6 @@ class ImageDownloader:
                     return image_data
                 else:
                     print(f"    Warning: Invalid image data from {url}")
-
             except requests.RequestException as e:
                 print(f"    Attempt {attempt + 1} failed for {url}: {e}")
                 if attempt < self.max_retries - 1:
