@@ -1,0 +1,28 @@
+[project]
+name = "manga-downloader"
+version = "0.1.0"
+description = ""
+authors = [
+    { name = "Roberto Anić Banić", email = "git@roberto.banic.hr" }
+]
+readme = "README.md"
+requires-python = ">=3.13,<4"
+dependencies = [
+    "beautifulsoup4>=4.13.4,<5",
+    "loguru>=0.7.3,<1",
+    "Pillow>=11.2.1,<12",
+    "selenium>=4.33.0,<5",
+    "requests>=2.32.3,<3"
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.15.0,<2",
+]
+
+[project.scripts]
+manga-downloader = "manga_downloader.__main__:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
